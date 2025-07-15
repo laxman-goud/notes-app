@@ -1,0 +1,30 @@
+<!-- Dashboard Header -->
+<div class="container-fluid">
+    <header
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+
+        <!-- Left: Logo linking to dashboard -->
+        <a href="/dashboard"
+            class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-primary text-decoration-none fw-bold fs-2">
+            Notes
+        </a>
+
+        <!-- Center: Search Form -->
+        <form action="/dashboard/search" method="POST"
+            class="col-12 col-md-6 mb-2 mb-md-0">
+            <input
+                type="search"
+                name="searchTerm"
+                class="form-control border-primary"
+                placeholder="Search..."
+                aria-label="Search notes"
+                required>
+        </form>
+
+        <!-- Right: Logout Button -->
+        <div class="col-md-3 text-end">
+            <a href="/logout" class="btn btn-outline-primary me-2">Logout</a>
+        </div>
+
+    </header>
+</div>

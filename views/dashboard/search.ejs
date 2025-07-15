@@ -1,0 +1,40 @@
+<div class="container-fluid container-fluid-custom pb-5 mb-5">
+
+    <!-- Breadcrumb and Page Title -->
+    <div class="row mb-4">
+        <div class="col d-flex justify-content-between align-items-center">
+            <h1 class="h3">Search Results</h1>
+            <a href="/dashboard" class="btn btn-outline-primary">← Back</a>
+        </div>
+    </div>
+
+    <!-- Search Results Section -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <% if (searchResults && searchResults.length> 0) { %>
+        <% searchResults.forEach(function(note) { %>
+        <div class="col">
+            <div class="card border-secondary h-100">
+                <a href="/dashboard/item/<%= note._id %>"
+                    class="card-body text-decoration-none">
+                    <h5 class="card-title text-dark">
+                        <%= note.title %>
+                    </h5>
+                    <p class="card-text text-muted">
+                        <%= note.body %>
+                    </p>
+                </a>
+            </div>
+        </div>
+        <% }) %>
+        <% } else { %>
+        <!-- If no results found -->
+        <div class="col text-center mt-5">
+            <img src="/img/not-found.png" alt="No results" width="150"
+                class="mb-4">
+            <h4>No notes matched your search.</h4>
+            <p class="text-muted">Try searching with a different keyword.</p>
+        </div>
+        <% } %>
+    </div>
+
+</div>
