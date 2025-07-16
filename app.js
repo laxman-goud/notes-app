@@ -37,6 +37,12 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Set 'user' globally for all EJS views
+app.use((req, res, next) => {
+    res.locals.user = req.user || null;
+    next();
+});
+
 // Override HTTP methods using _method query (for PUT/DELETE)
 app.use(methodOverride('_method'));
 

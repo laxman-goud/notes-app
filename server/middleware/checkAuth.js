@@ -1,8 +1,10 @@
-exports.isLoggedIn = function(req, res, next){
-    if(req.user){
-        next();
+// Middleware to check if user is authenticated
+exports.isLoggedIn = (req, res, next) => {
+    if (req.isAuthenticated && req.isAuthenticated()) {
+        // User is logged in, allow access
+        return next();
     }
-    else{
-        return res.status(401).send('Access Denied');
-    }
-}
+
+    // User not authenticated, redirect to Google OAuth
+    return res.redirect('/auth/google');
+};

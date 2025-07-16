@@ -11,6 +11,10 @@ body{
     font-size: 1.2rem;
     background-image: url('../img/noise-bg.png');
 }
+body::selection{
+    color: #FFC700;
+    background-color: var(--bs-primary-rgb);
+}
 h1, h2, h3, h4, h5, h6{
     font-family: "Unbounded", cursive;
     font-weight: 800;
@@ -90,7 +94,12 @@ h1, h2, h3, h4, h5, h6{
     bottom: -30px;
 }
 
+ /* footer */
 footer{
     background-color: var(--background-color);
     background-image: url('../img/noise-bg.png');
+}
+
+.custom-border-bottom, .custom-border-top{
+    border: 1px solid var(--bs-primary-rgb);
 }
