@@ -1,7 +1,5 @@
 const Note = require('../models/Notes');
 const mongoose = require('mongoose');
-const { search } = require('../routes/dashboard');
-
 
 /**
  * GET /
@@ -140,7 +138,6 @@ exports.dashboardAddNoteSubmit = async(req, res) => {
 exports.dashboardSearch = async(req, res) => {
     try {
         res.render('dashboard/search', {
-            searchResults,
             layout: 'layouts/search'
         })
     } catch (error) {
