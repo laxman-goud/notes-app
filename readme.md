@@ -86,11 +86,7 @@ notes-app/
 │   └── 404.ejs             # Custom 404 page
 ```
 
----
 
-## 📸 Screenshots
-
-> 
 
 ---
 
