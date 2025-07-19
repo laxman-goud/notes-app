@@ -21,11 +21,7 @@ exports.dashboard = async (req, res) => {
                     user: new mongoose.Types.ObjectId(req.user.id)
                 }
             },
-            {
-                $sort: {
-                    updatedAt: -1
-                }
-            },
+            { $sort: { updatedAt: -1 } },
             {
                 $project: {
                     title: { $substr: ['$title', 0, 30] },
@@ -47,127 +43,158 @@ exports.dashboard = async (req, res) => {
             pages: Math.ceil(count / perPage)
         });
     } catch (error) {
-        console.error(error);
-        res.status(500).send('Server Error');
+        res.status(500).render('error', {
+            errorTitle: 'Dashboard Load Failed',
+            errorMessage: 'We encountered a problem while loading your dashboard. Please try again later.'
+        });
     }
 };
 
+/**
+ * GET
+ * View specific note
+ */
+exports.dashboardViewNote = async (req, res) => {
+    try {
+        const note = await Note.findById(req.params.id)
+            .where({ user: req.user.id })
+            .lean();
+
+        if (note) {
+            res.render('dashboard/view-note', {
+                noteID: req.params.id,
+                note,
+                layout: 'layouts/dashboard'
+            });
+        } else {
+            res.status(404).render('error', {
+                errorTitle: 'Note Not Found',
+                errorMessage: 'The note you are looking for does not exist.'
+            });
+        }
+    } catch (error) {
+        res.status(500).render('error', {
+            errorTitle: 'Error Fetching Note',
+            errorMessage: 'There was a problem retrieving the note.'
+        });
+    }
+};
 
 /**
- * get
- * view specific note
+ * PUT /
+ * Update specific note
  */
-
-exports.dashboardViewNote = async(req, res) => {
-    const note = await Note.findById(req.params.id)
-    .where({ user: req.user.id }).lean();
-
-    if(note){
-        res.render('dashboard/view-note', {
-            noteID: req.params.id,
-            note,
-            layout: 'layouts/dashboard'
-        })
-    }
-    else{
-        res.send("Something went wrong.")
-    }
-}
-
-/**
- * put /
- * update specific note
- */
-
-exports.dashboardUpdateNote = async(req, res) => {
+exports.dashboardUpdateNote = async (req, res) => {
     try {
         await Note.findByIdAndUpdate(
-            {_id: req.params.id},
-            {title: req.body.title, body: req.body.body, updatedAt: Date.now()}
-        ).where({ user: req.user.id})
+            { _id: req.params.id },
+            {
+                title: req.body.title,
+                body: req.body.body,
+                updatedAt: Date.now()
+            }
+        ).where({ user: req.user.id });
 
         res.redirect('/dashboard');
     } catch (error) {
-        console.log(error);
+        res.status(500).render('error', {
+            errorTitle: 'Update Failed',
+            errorMessage: 'We couldn’t update the note. Please try again later.'
+        });
     }
-}
-
+};
 
 /**
- * DELETE/
- * delete a note
+ * DELETE /
+ * Delete a note
  */
-exports.dashboardDeleteNote = async(req, res) =>{
+exports.dashboardDeleteNote = async (req, res) => {
     try {
-        await Note.deleteOne({_id: req.params.id}).where({user: req.user.id});
+        await Note.deleteOne({ _id: req.params.id }).where({ user: req.user.id });
         res.redirect('/dashboard');
     } catch (error) {
-        console.log(error);
-        
+        res.status(500).render('error', {
+            errorTitle: 'Deletion Failed',
+            errorMessage: 'We were unable to delete the note.'
+        });
     }
-}
+};
 
 /**
  * GET /
- *  Add Notes
+ * Add Notes
  */
-exports.dashboardAddNote = async(req, res) =>{
-    res.render('dashboard/add', {
-        layout: 'layouts/dashboard'
-    });
-}
+exports.dashboardAddNote = async (req, res) => {
+    try {
+        res.render('dashboard/add', {
+            layout: 'layouts/dashboard'
+        });
+    } catch (error) {
+        res.status(500).render('error', {
+            errorTitle: 'Error',
+            errorMessage: 'Failed to load the note creation page.'
+        });
+    }
+};
 
 /**
- * POST/
- *  Add Notes
+ * POST /
+ * Add Notes
  */
-exports.dashboardAddNoteSubmit = async(req, res) => {
+exports.dashboardAddNoteSubmit = async (req, res) => {
     try {
         req.body.user = req.user.id;
         await Note.create(req.body);
-        res.redirect('/dashboard')
+        res.redirect('/dashboard');
     } catch (error) {
-        console.log(error);
+        res.status(500).render('error', {
+            errorTitle: 'Note Creation Failed',
+            errorMessage: 'We couldn’t save your note. Please try again.'
+        });
     }
-}
+};
 
 /**
- * GET/
- *  Search
+ * GET /
+ * Search Page
  */
-exports.dashboardSearch = async(req, res) => {
+exports.dashboardSearch = async (req, res) => {
     try {
         res.render('dashboard/search', {
             layout: 'layouts/search'
-        })
+        });
     } catch (error) {
-        console.log(error);
+        res.status(500).render('error', {
+            errorTitle: 'Search Page Error',
+            errorMessage: 'Could not load the search page.'
+        });
     }
-}
+};
 
 /**
- * POST/
- *  Search
+ * POST /
+ * Search Notes
  */
-exports.dashboardSearchSubmit = async(req, res) => {
+exports.dashboardSearchSubmit = async (req, res) => {
     try {
-        
         let searchTerm = req.body.searchTerm;
-        const searchNoSpecialChars = searchTerm.replace(/[^a-zA-Z0-9]/g, "");
+        const searchNoSpecialChars = searchTerm.replace(/[^a-zA-Z0-9]/g, '');
 
         const searchResults = await Note.find({
             $or: [
-                {title: {$regex: new RegExp(searchNoSpecialChars, 'i')}},
-                {body: {$regex: new RegExp(searchNoSpecialChars, 'i')}}
+                { title: { $regex: new RegExp(searchNoSpecialChars, 'i') } },
+                { body: { $regex: new RegExp(searchNoSpecialChars, 'i') } }
             ]
-        }).where({user: req.user.id});
+        }).where({ user: req.user.id });
 
         res.render('dashboard/search', {
             searchResults,
             layout: 'layouts/dashboard'
-        })
-
+        });
     } catch (error) {
-        console.log(error)
+        res.status(500).render('error', {
+            errorTitle: 'Search Failed',
+            errorMessage: 'We encountered an issue while performing your search. Please try again later.'
+        });
     }
-}
+};
