@@ -1,3 +1,60 @@
-<div class="container-fluid container-fluid-custom">
-    <h1>About Home Page</h1>
-</div>
+<!-- views/about.ejs -->
+<section class="container-fluid container-fluid-custom py-5" style="margin-bottom: 5rem;">
+    <div class="container">
+
+        <!-- Hero Section -->
+        <div class="row align-items-center mb-5">
+        <div class="col-md-6 text-center text-md-start">
+            <h1 class="display-4 fw-bold text-primary">What is NodeNote?</h1>
+            <p class="lead text-primary mt-3">
+            NodeNote is a minimal yet powerful cloud-based note-taking app built with Node.js and MongoDB. Create, edit, and manage your notes anywhere—effortlessly.
+            </p>
+            <a href="/dashboard" class="btn btn-primary btn-lg mt-4 shadow-sm">Get Started</a>
+        </div>
+        <div class="col-md-6 text-center mt-2">
+            <img src="/img/notes-illustration.svg" alt="Notes Illustration" class="img-fluid" style="max-height: 300px;">
+        </div>
+        </div>
+
+        <!-- Feature Cards -->
+        <div class="row text-center">
+        <h2 class="mb-4 text-primary fw-semibold">Why Choose NodeNote?</h2>
+
+        <div class="col-md-4 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title text-primary fw-bold">📝 Rich Notes</h5>
+                <p class="card-text text-muted">Add and manage notes with full control—title, body, and timestamps included.</p>
+            </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title text-primary fw-bold">🔐 Google Auth</h5>
+                <p class="card-text text-muted">Sign in securely using your Google account. No passwords to remember!</p>
+            </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title text-primary fw-bold">📱 Fully Responsive</h5>
+                <p class="card-text text-muted">Works beautifully on all screen sizes—from mobile to desktop.</p>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Developer Credit -->
+        <div class="text-center mt-1">
+        <p class="text-muted">
+            Developed by
+            <a href="https://github.com/laxman-goud" target="_blank" class="text-decoration-underline fw-bold">Laxman</a>
+        </p>
+        </div>
+
+    </div>
+</section>
