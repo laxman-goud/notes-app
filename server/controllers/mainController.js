@@ -6,7 +6,8 @@ exports.homePage = async (req, res) => {
     }
     res.render('index', {
         ...locals,
-        layout: 'layouts/front-page'
+        layout: 'layouts/front-page',
+        path: '/'
     })
 }
 
@@ -16,5 +17,8 @@ exports.about = async (req, res) => {
         title: 'About - NodeNote',
         description: 'Free NodeJs Notes App'
     }
-    res.render('about', locals)
+    res.render('about', {
+        locals,
+        path: '/about'
+    })
 }
