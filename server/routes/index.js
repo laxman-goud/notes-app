@@ -6,5 +6,6 @@ const mainController = require('../controllers/mainController')
 router.get('/', mainController.homePage)
 router.get('/about', mainController.about)
 router.get('/features', mainController.features)
+router.get('/faqs', mainController.faqs)
 
 module.exports = router;

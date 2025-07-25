@@ -18,16 +18,16 @@
         <!-- Right Side: Navigation Links -->
         <ul class="nav justify-content-center justify-content-md-end col-md-4 flex-wrap">
             <li class="nav-item">
-                <a href="/" class="nav-link px-2 text-primary">Home</a>
+                <a href="/" class="nav-link px-2 <%= (path === '/') ? 'link-secondary' : 'link-dark' %>">Home</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-primary">Features</a>
+                <a href="/features" class="nav-link px-2 <%= (path === '/features') ? 'link-secondary' : 'link-dark' %>">Features</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-primary">FAQs</a>
+                <a href="/faqs" class="nav-link px-2 <%= (path === '/faqs') ? 'link-secondary' : 'link-dark' %>">FAQs</a>
             </li>
             <li class="nav-item">
-                <a href="/about" class="nav-link px-2 text-primary">About</a>
+                <a href="/about" class="nav-link px-2 <%= (path === '/about') ? 'link-secondary' : 'link-dark' %>">About</a>
             </li>
         </ul>
     </div>
