@@ -22,3 +22,15 @@ exports.about = async (req, res) => {
         path: '/about'
     })
 }
+
+//  get features page
+exports.features = async (req, res) => {
+    const locals = {
+        title: 'Features - NodeNote',
+        description: 'Free NodeJs Notes App'
+    }
+    res.render('features', {
+        locals,
+        path: '/features'
+    })
+}
