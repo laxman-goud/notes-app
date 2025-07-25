@@ -42,6 +42,12 @@ app.use((req, res, next) => {
     res.locals.user = req.user || null;
     next();
 });
+// Set 'path' for nav-links globally for all EJS views
+app.use((req, res, next) => {
+    res.locals.path = req.path;
+    next();
+});
+
 
 // Override HTTP methods using _method query (for PUT/DELETE)
 app.use(methodOverride('_method'));
