@@ -1,3 +1,8 @@
+![GitHub repo size](https://img.shields.io/github/repo-size/laxman-goud/notes-app)
+![GitHub forks](https://img.shields.io/github/forks/laxman-goud/notes-app)
+![GitHub stars](https://img.shields.io/github/stars/laxman-goud/notes-app)
+![GitHub issues](https://img.shields.io/github/issues/laxman-goud/notes-app)
+
 # 📝 Notes App
 
 A full-stack Note-Taking Web App built with **Node.js**, **Express**, **MongoDB**, and **EJS**, featuring **Google OAuth login**, session-based access, and a responsive UI.
