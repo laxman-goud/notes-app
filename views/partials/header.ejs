@@ -17,6 +17,16 @@
         <!-- Auth Section -->
         <div class="col-md-3 text-end">
             <% if (user) { %>
+                <% if (user.profileImage) { %>
+                    <img src="<%= user.profileImage %>" 
+                        alt="Profile"
+                        class="rounded-circle"
+                        style="width: 40px; height: 40px; object-fit: cover;"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                    <i class="bi bi-person-circle fs-3 d-none align-middle"></i>
+                <% } else { %>
+                    <i class="bi bi-person-circle fs-3 align-middle"></i>
+                <% } %>
                 <span class="me-3">Welcome, <%= user.firstName %></span>
                 <a href="/logout" class="btn btn-outline-danger">Logout</a>
             <% } else { %>

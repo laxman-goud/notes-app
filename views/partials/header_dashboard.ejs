@@ -23,6 +23,16 @@
 
         <!-- Right: Logout Button -->
         <div class="col-md-3 text-end">
+            <% if (user.profileImage) { %>
+                <img src="<%= user.profileImage %>" 
+                    alt="Profile"
+                    class="rounded-circle"
+                    style="width: 40px; height: 40px; object-fit: cover;"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                <i class="bi bi-person-circle fs-3 d-none align-middle"></i>
+            <% } else { %>
+                <i class="bi bi-person-circle fs-3 align-middle"></i>
+            <% } %>
             <a href="/logout" class="btn btn-outline-primary me-2">Logout</a>
         </div>
 
