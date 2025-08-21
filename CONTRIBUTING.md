@@ -8,10 +8,11 @@ We welcome all contributions, whether it's bug fixes, new features, documentatio
 ## 🚀 How to Contribute
 
 1. **Fork the Repository**
+   - Click the **Fork** button on the top right of the original repository.  
+   - Clone **your fork** locally:  
    ```bash
-   git clone https://github.com/laxman-goud/notes-app.git
+   git clone https://github.com/<your-username>/notes-app.git
    cd notes-app
-   ```
 2. **Create a New Branch**
    - For a new feature:
    ```bash
