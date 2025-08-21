@@ -106,6 +106,15 @@ You can deploy this app on:
 Make sure to update your `.env` `GOOGLE_CALLBACK_URL` to match your deployed URL (e.g. `https://yourapp.onrender.com/google/callback`).
 
 ---
+
+## 🤝 Contributing
+
+Contributions are welcome! 🎉  
+
+Feel free to **fork this project**, open an **issue**, or submit a **pull request** with your improvements.  
+Please make sure your changes are clear, concise, and follow the contributing guidelines. 
+
+---
 ## 🙋‍♂️ Author
 
 Made with ❤️ by [**Laxman Goud**](https://github.com/laxman-goud)
