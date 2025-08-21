@@ -109,15 +109,3 @@ Make sure to update your `.env` `GOOGLE_CALLBACK_URL` to match your deployed URL
 ## 🙋‍♂️ Author
 
 Made with ❤️ by [**Laxman Goud**](https://github.com/laxman-goud)
-
----
-
-## 🤝 Contributions
-
-Contributions are welcome! To contribute:
-
-1. Fork this repo
-2. Create a new branch: `git checkout -b feature/feature-name`
-3. Commit changes: `git commit -m "Add feature"`
-4. Push to the branch: `git push origin feature/feature-name`
-5. Open a Pull Request 🚀
